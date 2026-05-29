@@ -28,9 +28,7 @@ export default function BrandLogos() {
         Trusted by
       </p>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-0 divide-y sm:divide-y-0 sm:divide-x"
-        style={{ divideColor: "rgba(26,46,56,0.12)" }}
-      >
+      <div className="flex flex-col sm:flex-row items-center justify-center divide-y sm:divide-y-0 sm:divide-x divide-navy/10">
         {brands.map((b, i) => (
           <div
             key={b.name}
