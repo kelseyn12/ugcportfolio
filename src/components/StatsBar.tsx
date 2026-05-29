@@ -26,7 +26,6 @@ export default function StatsBar() {
         className="rounded-2xl grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0"
         style={{
           background: "#1a2e38",
-          divideColor: "rgba(255,255,255,0.08)",
           border: "1px solid rgba(255,255,255,0.06)",
         }}
       >
