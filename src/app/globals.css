@@ -1,26 +1,132 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-behavior: smooth;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold;
+  }
+  p {
+    @apply font-sans font-normal leading-loose;
+  }
+  button, a {
+    @apply font-sans font-semibold;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-navy:  #1a2e38;
+  --color-steel: #3f4d56;
+  --color-teal:  #4a6b73;
+  --color-coral: #b85c38;
+  --color-cream: #e8dcc8;
+  --color-peach: #d4c4a8;
+}
+
+@layer utilities {
+  @keyframes fade-in-up {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+
+  @keyframes fade-in-scale {
+    0%   { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .animate-fade-in-scale {
+    animation: fade-in-scale 1s ease-out forwards;
+  }
+
+  .delay-400  { animation-delay: 400ms; }
+  .delay-600  { animation-delay: 600ms; }
+  .delay-800  { animation-delay: 800ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .scroll-reveal.scroll-reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scroll-reveal-stagger-1 { transition-delay: 80ms; }
+  .scroll-reveal-stagger-2 { transition-delay: 160ms; }
+  .scroll-reveal-stagger-3 { transition-delay: 240ms; }
+  .scroll-reveal-stagger-4 { transition-delay: 320ms; }
+  .scroll-reveal-stagger-5 { transition-delay: 400ms; }
+
+  .floating-surface {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.04), 0 1px 16px rgba(0,0,0,0.02);
+  }
+  @supports not (backdrop-filter: blur(12px)) {
+    .floating-surface { background: rgba(255,255,255,0.88); }
+  }
+
+  .floating-surface-dark {
+    background: rgba(31,58,68,0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.12), 0 1px 16px rgba(0,0,0,0.06);
+  }
+
+  .breezy-hover {
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out,
+                border-color 0.3s ease-out, background-color 0.3s ease-out;
+  }
+  .breezy-hover:hover, .breezy-hover:focus-within {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.02);
+  }
+
+  .video-card-hover {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .video-card-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 55s linear infinite;
+  }
+
+  @keyframes hero-gradient-drift {
+    0%, 100% { background-position: 50% 50%; }
+    50%       { background-position: 52% 48%; }
+  }
+  .animate-hero-gradient-drift {
+    background-size: 280% 280%;
+    animation: hero-gradient-drift 25s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal { transition: none; }
+    .scroll-reveal-stagger-1,
+    .scroll-reveal-stagger-2,
+    .scroll-reveal-stagger-3,
+    .scroll-reveal-stagger-4,
+    .scroll-reveal-stagger-5 { transition-delay: 0ms; }
+    .animate-marquee,
+    .animate-hero-gradient-drift { animation: none; }
+    .breezy-hover:hover,
+    .video-card-hover:hover { transform: translateY(-2px) scale(1); }
+  }
 }
