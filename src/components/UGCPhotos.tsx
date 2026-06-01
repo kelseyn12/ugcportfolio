@@ -2,20 +2,21 @@
 import { useEffect, useRef } from "react";
 
 const photos = [
-  { src: "/images/altra1.jpg",        brand: "Altra",         alt: "Altra running shoes lifestyle" },
-  { src: "/images/RadFabJeans2.JPG",  brand: "Rad Fab Jeans", alt: "Rad Fab Jeans lifestyle" },
-  { src: "/images/Rompbag1.jpg",      brand: "Romp Bags",     alt: "Romp bag lifestyle" },
-  { src: "/images/RadFabJeans3.JPG",  brand: "Rad Fab Jeans", alt: "Rad Fab Jeans lifestyle" },
-  { src: "/images/RompBike.jpg",      brand: "Romp Bags",     alt: "Romp bike lifestyle" },
-  { src: "/images/altra2.jpg",        brand: "Altra",         alt: "Altra running shoes" },
-  { src: "/images/Rompbag2.jpg",      brand: "Romp Bags",     alt: "Romp bag detail" },
-  { src: "/images/RadFabJeans4.JPG",  brand: "Rad Fab Jeans", alt: "Rad Fab Jeans detail" },
+  { src: "/images/altra1.jpg",        brand: "Altra",              alt: "Altra running shoes lifestyle" },
+  { src: "/images/RadFabJeans2.JPG",  brand: "Rad Fab Jeans",      alt: "Rad Fab Jeans lifestyle" },
+  { src: "/images/Rompbag1.jpg",      brand: "Romp Bags",          alt: "Romp bag lifestyle" },
+  { src: "/images/RadFabJeans3.JPG",  brand: "Rad Fab Jeans",      alt: "Rad Fab Jeans lifestyle" },
+  { src: "/images/RompBike.jpg",      brand: "Romp Bags",          alt: "Romp bike lifestyle" },
+  { src: "/images/altra2.jpg",        brand: "Altra",              alt: "Altra running shoes" },
+  { src: "/images/Rompbag2.jpg",      brand: "Romp Bags",          alt: "Romp bag detail" },
+  { src: "/images/RadFabJeans4.JPG",  brand: "Rad Fab Jeans",      alt: "Rad Fab Jeans detail" },
+  { src: "/images/chair.jpg",         brand: "Ely Outfitting Co.", alt: "Ely Outfitting chair" },
 ];
 
-// Desktop: 3 columns. Mobile: 2 columns (col3 hidden)
+// 9 photos — 3 per column
 const col1 = [photos[0], photos[3], photos[6]];
 const col2 = [photos[1], photos[4], photos[7]];
-const col3 = [photos[2], photos[5]];
+const col3 = [photos[2], photos[5], photos[8]];
 
 function Photo({ p, delay }: { p: typeof photos[0]; delay: string }) {
   return (
@@ -95,7 +96,7 @@ export default function UGCPhotos() {
         className="scroll-reveal mt-10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 floating-surface"
       >
         <p className="text-sm" style={{ color: "#3f4d56" }}>
-          Need stills for your brand? Let's shoot.
+          Need stills for your brand? Let&apos;s shoot.
         </p>
         <a
           href="mailto:kelseynocekugc@gmail.com"

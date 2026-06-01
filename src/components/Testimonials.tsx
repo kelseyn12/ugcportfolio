@@ -67,7 +67,7 @@ export default function Testimonials() {
                   className="text-5xl font-serif leading-none mb-4"
                   style={{ color: "#b85c38", fontFamily: "Georgia, serif" }}
                 >
-                  "
+                  &ldquo;
                 </p>
                 <p
                   className="text-base leading-relaxed mb-6 italic"

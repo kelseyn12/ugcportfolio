@@ -125,7 +125,7 @@ export default function CaseStudies() {
             e.currentTarget.style.color = '#1a2e38';
           }}
         >
-          Let's Talk ↗
+          Let&apos;s Talk ↗
         </a>
       </div>
     </section>

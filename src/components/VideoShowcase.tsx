@@ -91,16 +91,6 @@ const more = [
   },
 ];
 
-const typeColors: Record<string, { bg: string; text: string }> = {
-  "Skit":          { bg: "rgba(184,92,56,0.12)",  text: "#b85c38" },
-  "B-Roll + VO":   { bg: "rgba(74,107,115,0.12)", text: "#4a6b73" },
-  "Story":         { bg: "rgba(26,46,56,0.10)",   text: "#1a2e38" },
-  "Green Screen":  { bg: "rgba(100,80,140,0.12)", text: "#6450a0" },
-  "Product Demo":  { bg: "rgba(184,92,56,0.12)",  text: "#b85c38" },
-  "Testimonial":   { bg: "rgba(74,107,115,0.12)", text: "#4a6b73" },
-  "Product Review":{ bg: "rgba(26,46,56,0.10)",   text: "#1a2e38" },
-};
-
 function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -118,8 +108,6 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
     }
     setPlaying(!playing);
   };
-
-  const colors = typeColors[v.type] ?? { bg: "rgba(26,46,56,0.10)", text: "#1a2e38" };
 
   return (
     <div
@@ -164,26 +152,13 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
           </div>
         )}
 
-        {/* Type tag */}
-        <div className="absolute top-3 left-3">
-          <span
-            className="text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
-            style={{ background: colors.bg, color: colors.text, backdropFilter: "blur(8px)" }}
-          >
-            {v.type}
-          </span>
-        </div>
-
 
       </div>
 
       {/* Info */}
       <div className="px-5 py-4" style={{ borderTop: "1px solid rgba(26,46,56,0.06)" }}>
-        <p className="text-xs font-semibold uppercase tracking-wider mb-0.5" style={{ color: "#b85c38" }}>
-          {v.brand} · {v.niche}
-        </p>
-        <p className="text-sm font-bold" style={{ color: "#1a2e38" }}>
-          {v.title}
+        <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a6b73" }}>
+          {v.niche} · {v.type}
         </p>
       </div>
     </div>
@@ -270,7 +245,7 @@ export default function VideoShowcase() {
         className="scroll-reveal mt-10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 floating-surface"
       >
         <p className="text-sm" style={{ color: "#3f4d56" }}>
-          Like what you see? Let's make something for your brand.
+          Like what you see? Let&apos;s make something for your brand.
         </p>
         <a
           href="mailto:kelseynocekugc@gmail.com"

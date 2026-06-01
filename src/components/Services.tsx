@@ -80,7 +80,7 @@ export default function Services() {
         }}
       >
         <p className="text-sm" style={{ color: "rgba(232,220,200,0.7)" }}>
-          Not sure what you need? Let's figure it out together.
+          Not sure what you need? Let&apos;s figure it out together.
         </p>
         <a
           href="mailto:kelseynocekugc@gmail.com"
