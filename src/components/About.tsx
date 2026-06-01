@@ -15,7 +15,7 @@ export default function About() {
   }, []);
 
   const photos = [
-    { src: "/images/outside-surf.JPG",  alt: "Kelsey surfing" },
+    { src: "/images/outside-surfing.JPG",  alt: "Kelsey surfing" },
     { src: "/images/outside-climb.JPG", alt: "Kelsey climbing" },
     { src: "/images/outside-bike.jpeg", alt: "Kelsey biking" },
     { src: "/images/outside-music.jpg", alt: "Kelsey playing music" },
