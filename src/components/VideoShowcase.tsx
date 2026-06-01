@@ -130,6 +130,7 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
           src={`/video/${v.file}`}
           loop
           playsInline
+          preload="none"
           className="w-full h-full object-cover"
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}

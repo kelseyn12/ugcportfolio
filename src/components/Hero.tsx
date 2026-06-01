@@ -174,9 +174,10 @@ export default function Hero() {
                 >
                   <video
                     ref={videoRef}
-                    src="/intro.mp4"
+                    src="/intro-web.mp4"
                     loop
                     playsInline
+                    preload="none"
                     className="w-full h-full object-cover"
                   />
 
