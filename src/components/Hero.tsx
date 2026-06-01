@@ -177,7 +177,7 @@ export default function Hero() {
                     src="/intro-web.mp4"
                     loop
                     playsInline
-                    preload="none"
+                    
                     className="w-full h-full object-cover"
                   />
 
