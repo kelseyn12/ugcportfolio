@@ -64,8 +64,8 @@ export default function Contact() {
         {/* Media kit download */}
         <div className="scroll-reveal scroll-reveal-stagger-2 mb-10">
           <a
-            href="/Kelsey_Media_Kit.pdf"
-            download
+            href="/KelseyMediaKit.pdf"
+            download="KelseyMediaKit.pdf"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all duration-200"
             style={{ border: '1px solid rgba(232,220,200,0.25)', color: 'rgba(232,220,200,0.75)', background: 'transparent' }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = '#b85c38'; e.currentTarget.style.color = '#e8dcc8'; }}
