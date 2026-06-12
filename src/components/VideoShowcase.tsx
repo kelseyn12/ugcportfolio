@@ -91,7 +91,7 @@ const more = [
   },
 ];
 
-function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
+function VideoCard({ v, index }: { v: (typeof featured)[0]; index: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
 
@@ -101,7 +101,7 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
       videoRef.current.pause();
     } else {
       // pause all other videos first
-      document.querySelectorAll("video").forEach(vid => {
+      document.querySelectorAll("video").forEach((vid) => {
         if (vid !== videoRef.current) vid.pause();
       });
       videoRef.current.play();
@@ -111,12 +111,13 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
 
   return (
     <div
-      className={`scroll-reveal scroll-reveal-stagger-${Math.min(index + 1, 5) as 1|2|3|4|5} video-card-hover rounded-3xl overflow-hidden`}
+      className={`scroll-reveal scroll-reveal-stagger-${Math.min(index + 1, 5) as 1 | 2 | 3 | 4 | 5} video-card-hover rounded-3xl overflow-hidden`}
       style={{
         background: "rgba(255,255,255,0.6)",
         border: "1px solid rgba(26,46,56,0.08)",
         backdropFilter: "blur(8px)",
-        boxShadow: "0 8px 32px rgba(26,46,56,0.1), 0 2px 8px rgba(26,46,56,0.06)",
+        boxShadow:
+          "0 8px 32px rgba(26,46,56,0.1), 0 2px 8px rgba(26,46,56,0.06)",
       }}
     >
       {/* Video area */}
@@ -128,6 +129,7 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
         <video
           ref={videoRef}
           src={`/video/${v.file}`}
+          poster={`/thumbs/${v.file.replace(".mp4", "-thumb.jpg")}`}
           loop
           playsInline
           preload="none"
@@ -144,7 +146,12 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
           >
             <div
               className="flex items-center justify-center rounded-full"
-              style={{ width: 52, height: 52, border: "2px solid white", background: "rgba(255,255,255,0.15)" }}
+              style={{
+                width: 52,
+                height: 52,
+                border: "2px solid white",
+                background: "rgba(255,255,255,0.15)",
+              }}
             >
               <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
                 <polygon points="6,4 18,10 6,16" />
@@ -152,13 +159,17 @@ function VideoCard({ v, index }: { v: typeof featured[0]; index: number }) {
             </div>
           </div>
         )}
-
-
       </div>
 
       {/* Info */}
-      <div className="px-5 py-4" style={{ borderTop: "1px solid rgba(26,46,56,0.06)" }}>
-        <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a6b73" }}>
+      <div
+        className="px-5 py-4"
+        style={{ borderTop: "1px solid rgba(26,46,56,0.06)" }}
+      >
+        <p
+          className="text-xs font-semibold uppercase tracking-wider"
+          style={{ color: "#4a6b73" }}
+        >
           {v.niche} · {v.type}
         </p>
       </div>
@@ -171,11 +182,17 @@ export default function VideoShowcase() {
   const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
-    const o = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.querySelectorAll(".scroll-reveal").forEach(el => el.classList.add("scroll-reveal-visible"));
-      });
-    }, { threshold: 0.05 });
+    const o = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting)
+            e.target
+              .querySelectorAll(".scroll-reveal")
+              .forEach((el) => el.classList.add("scroll-reveal-visible"));
+        });
+      },
+      { threshold: 0.05 },
+    );
     if (ref.current) o.observe(ref.current);
     return () => o.disconnect();
   }, []);
@@ -183,7 +200,7 @@ export default function VideoShowcase() {
   // pause all videos when collapsing
   const handleToggle = () => {
     if (showMore) {
-      document.querySelectorAll("video").forEach(v => v.pause());
+      document.querySelectorAll("video").forEach((v) => v.pause());
     }
     setShowMore(!showMore);
   };
@@ -216,11 +233,11 @@ export default function VideoShowcase() {
             color: "#1a2e38",
             background: "transparent",
           }}
-          onMouseEnter={e => {
+          onMouseEnter={(e) => {
             e.currentTarget.style.background = "#1a2e38";
             e.currentTarget.style.color = "#e8dcc8";
           }}
-          onMouseLeave={e => {
+          onMouseLeave={(e) => {
             e.currentTarget.style.background = "transparent";
             e.currentTarget.style.color = "#1a2e38";
           }}
@@ -242,9 +259,7 @@ export default function VideoShowcase() {
       </div>
 
       {/* CTA */}
-      <div
-        className="scroll-reveal mt-10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 floating-surface"
-      >
+      <div className="scroll-reveal mt-10 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 floating-surface">
         <p className="text-sm" style={{ color: "#3f4d56" }}>
           Like what you see? Let&apos;s make something for your brand.
         </p>
@@ -252,8 +267,8 @@ export default function VideoShowcase() {
           href="mailto:kelseynocekugc@gmail.com"
           className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all duration-200"
           style={{ background: "#1a2e38", color: "#e8dcc8" }}
-          onMouseEnter={e => (e.currentTarget.style.background = "#b85c38")}
-          onMouseLeave={e => (e.currentTarget.style.background = "#1a2e38")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#b85c38")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#1a2e38")}
         >
           Work With Me ↗
         </a>
