@@ -66,7 +66,7 @@ export default function Hero() {
               >
                 10+ years of creative experience across music, tech, and
                 content. Specializing in authentic, high-performing UGC for
-                outdoor, travel, adventure, lifestyle, and tech brands.
+                outdoor, travel, pet, adventure, lifestyle, and tech brands.
               </p>
 
               <div className="flex items-center gap-4 mb-6 animate-fade-in-up delay-1000">
@@ -236,7 +236,7 @@ export default function Hero() {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(2)].map((_, i) => (
             <span key={i} className="flex items-center">
-              {["Outdoor", "Travel", "Adventure", "Lifestyle", "Tech", "UGC Video", "B-Roll", "Scripting", "Hook-First", "Brand Storytelling"].map((word) => (
+              {["Outdoor", "Travel","Pet", "Adventure", "Lifestyle", "Tech", "UGC Video", "B-Roll", "Scripting", "Hook-First", "Brand Storytelling"].map((word) => (
                 <span key={word} className="flex items-center">
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] px-6" style={{ color: "#e8dcc8" }}>
                     {word}
