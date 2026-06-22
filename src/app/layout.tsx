@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+  verification: {
+    google: 'aA1bR1WYZoCIOzBH6MH-yzgcR37G_MsL5h-nzk7-48o',
+  },
   openGraph: {
     title: 'Kelsey Nocek | UGC Creator',
     description:
