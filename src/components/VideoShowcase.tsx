@@ -3,6 +3,20 @@ import { useEffect, useRef, useState } from "react";
 
 const featured = [
   {
+    file: "Maxwell Mansion-web.mp4",
+    brand: "Maxwell Mansion",
+    title: "Stay Story",
+    type: "Story",
+    niche: "Travel",
+  },
+  {
+    file: "BWCA-web.mp4",
+    brand: "BWCA",
+    title: "Canoe Trip",
+    type: "B-Roll + VO",
+    niche: "Outdoor",
+  },
+  {
     file: "Challenger Backpack-web.mp4",
     brand: "La Sportiva",
     title: "Challenger 28 Backpack",
@@ -30,6 +44,9 @@ const featured = [
     type: "Green Screen",
     niche: "Tech",
   },
+];
+
+const more = [
   {
     file: "chomchom-web.mp4",
     brand: "Chom Chom",
@@ -44,9 +61,6 @@ const featured = [
     type: "Testimonial",
     niche: "Outdoor",
   },
-];
-
-const more = [
   {
     file: "Toms-web.mp4",
     brand: "Toms",
@@ -249,7 +263,7 @@ export default function VideoShowcase() {
       {/* More videos — animated expand */}
       <div
         className="overflow-hidden transition-all duration-500"
-        style={{ maxHeight: showMore ? 2000 : 0, opacity: showMore ? 1 : 0 }}
+        style={{ maxHeight: showMore ? 6000 : 0, opacity: showMore ? 1 : 0 }}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-5">
           {more.map((v, i) => (
