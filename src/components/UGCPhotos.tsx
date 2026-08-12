@@ -11,10 +11,11 @@ const photos = [
   { src: "/images/Rompbag2.jpg",      brand: "Romp Bags",          alt: "Romp bag detail" },
   { src: "/images/RadFabJeans4.JPG",  brand: "Rad Fab Jeans",      alt: "Rad Fab Jeans detail" },
   { src: "/images/chair.jpg",         brand: "Ely Outfitting Co.", alt: "Ely Outfitting chair" },
+  { src: "/images/PawzitivePets.jpg", brand: "Pawzitive Pets",     alt: "Diego with Pawzitive Pets flea and tick prevention" },
 ];
 
-// 9 photos — 3 per column
-const col1 = [photos[0], photos[3], photos[6]];
+// 10 photos — distributed across 3 columns
+const col1 = [photos[0], photos[3], photos[6], photos[9]];
 const col2 = [photos[1], photos[4], photos[7]];
 const col3 = [photos[2], photos[5], photos[8]];
 
@@ -73,7 +74,7 @@ export default function UGCPhotos() {
         {/* Column 1 — always visible */}
         <div className="flex flex-col gap-4">
           {col1.map((p, i) => (
-            <Photo key={p.src} p={p} delay={`scroll-reveal-stagger-${(i + 1) as 1|2|3}`} />
+            <Photo key={p.src} p={p} delay={`scroll-reveal-stagger-${(i + 1) as 1|2|3|4}`} />
           ))}
         </div>
 
