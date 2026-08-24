@@ -3,6 +3,13 @@ import { useEffect, useRef, useState } from "react";
 
 const featured = [
   {
+    file: "Under Armour Gear-web.mp4",
+    brand: "Under Armour",
+    title: "Gear",
+    type: "Product Demo",
+    niche: "Lifestyle",
+  },
+  {
     file: "Maxwell Mansion-web.mp4",
     brand: "Maxwell Mansion",
     title: "Stay Story",
@@ -37,6 +44,9 @@ const featured = [
     type: "Story",
     niche: "Gear",
   },
+];
+
+const more = [
   {
     file: "Splitwise-web.mp4",
     brand: "Splitwise",
@@ -44,9 +54,6 @@ const featured = [
     type: "Green Screen",
     niche: "Tech",
   },
-];
-
-const more = [
   {
     file: "chomchom-web.mp4",
     brand: "Chom Chom",
