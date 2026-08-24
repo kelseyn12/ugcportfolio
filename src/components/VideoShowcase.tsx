@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 
 const featured = [
   {
-    file: "Under Armour Gear-web.mp4",
-    brand: "Under Armour",
+    file: "Under Armor Gear-web.mp4",
+    brand: "Under Armor",
     title: "Gear",
     type: "Product Demo",
     niche: "Lifestyle",
