@@ -1,8 +1,17 @@
 'use client';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -10,71 +19,72 @@ export default function Nav() {
   };
 
   const links = [
-    { label: 'Work',    id: 'videos'  },
-    { label: 'Stills',  id: 'photos'  },
+    { label: 'Work', id: 'work' },
+    { label: 'About', id: 'about' },
+    { label: 'Results', id: 'results' },
     { label: 'Contact', id: 'contact' },
   ];
 
   return (
     <>
-      <nav
-        className="fixed top-0 left-0 right-0 z-50"
-        style={{
-          background: 'rgba(232,220,200,0.88)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(26,46,56,0.08)',
-        }}
-      >
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-          <span className="text-sm font-bold tracking-wide" style={{ color: '#1a2e38' }}>
+      <nav className="site-nav" data-scrolled={scrolled}>
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="font-serif text-[0.9375rem] font-semibold tracking-[0.04em] text-[var(--charcoal)]"
+          >
             Kelsey Nocek
-          </span>
+          </button>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden items-center gap-8 md:flex">
             {links.map(({ label, id }) => (
               <button
                 key={id}
+                type="button"
                 onClick={() => scrollTo(id)}
-                className="text-xs font-semibold uppercase tracking-widest transition-colors duration-200"
-                style={{ color: '#4a6b73' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#1a2e38')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#4a6b73')}
+                className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[var(--ink-muted)] transition-colors hover:text-[var(--forest)]"
               >
                 {label}
               </button>
             ))}
           </div>
 
-          {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-1"
+            type="button"
+            className="flex flex-col gap-1.5 p-1 md:hidden"
             onClick={() => setOpen(!open)}
+            aria-expanded={open}
             aria-label="Menu"
           >
-            <span className="block w-5 h-0.5 transition-all duration-200" style={{ background: '#1a2e38', transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
-            <span className="block w-5 h-0.5 transition-all duration-200" style={{ background: '#1a2e38', opacity: open ? 0 : 1 }} />
-            <span className="block w-5 h-0.5 transition-all duration-200" style={{ background: '#1a2e38', transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} />
+            <span
+              className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
+              style={{
+                transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none',
+              }}
+            />
+            <span
+              className="block h-px w-5 bg-[var(--charcoal)] transition-opacity"
+              style={{ opacity: open ? 0 : 1 }}
+            />
+            <span
+              className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
+              style={{
+                transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
+              }}
+            />
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu dropdown */}
       {open && (
-        <div
-          className="fixed top-14 left-0 right-0 z-40 flex flex-col"
-          style={{
-            background: 'rgba(232,220,200,0.97)',
-            backdropFilter: 'blur(12px)',
-            borderBottom: '1px solid rgba(26,46,56,0.08)',
-          }}
-        >
+        <div className="fixed inset-x-0 top-16 z-40 border-b border-[var(--line)] bg-[rgba(247,245,240,0.98)] backdrop-blur-md md:hidden">
           {links.map(({ label, id }) => (
             <button
               key={id}
+              type="button"
               onClick={() => scrollTo(id)}
-              className="text-sm font-semibold uppercase tracking-widest py-4 px-6 text-left border-b transition-colors duration-200"
-              style={{ color: '#1a2e38', borderColor: 'rgba(26,46,56,0.06)' }}
+              className="block w-full border-b border-[var(--line)] px-5 py-4 text-left text-sm font-semibold uppercase tracking-[0.16em] text-[var(--charcoal)]"
             >
               {label}
             </button>

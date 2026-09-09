@@ -3,17 +3,17 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ugc.kelseynocek.com'),
-  title: 'Kelsey Nocek | UGC Creator — Outdoor, Travel & Lifestyle Content',
+  title: 'Kelsey Nocek | UGC Creator & Storyteller — Outdoor, Travel & Lifestyle',
   description:
-    'UGC creator for outdoor, travel, adventure, lifestyle, and tech brands. Authentic, high-performing video and photo content based in Wisconsin.',
+    'Midwest-based UGC creator and storyteller for outdoor, adventure, travel, gear, pet, and lifestyle brands. Concept-driven short-form content with creative and technical instincts.',
   keywords: [
     'UGC creator',
+    'storyteller',
     'outdoor UGC',
     'travel content creator',
     'adventure UGC',
     'Wisconsin content creator',
-    'TikTok creator',
-    'UGC video',
+    'short-form video',
   ],
   icons: {
     icon: '/favicon.ico',
@@ -23,17 +23,17 @@ export const metadata: Metadata = {
     google: 'aA1bR1WYZoCIOzBH6MH-yzgcR37G_MsL5h-nzk7-48o',
   },
   openGraph: {
-    title: 'Kelsey Nocek | UGC Creator',
+    title: 'Kelsey Nocek | UGC Creator & Storyteller',
     description:
-      'Authentic UGC video and photo content for outdoor, travel, adventure, lifestyle, and tech brands.',
+      'Concept-driven short-form video and photography for outdoor, travel, adventure, gear, pet, and lifestyle brands.',
     url: 'https://ugc.kelseynocek.com',
-    siteName: 'Kelsey Nocek | UGC Creator',
+    siteName: 'Kelsey Nocek',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kelsey Nocek — UGC Creator',
+        alt: 'Kelsey Nocek — UGC Creator & Storyteller',
       },
     ],
     locale: 'en_US',
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kelsey Nocek | UGC Creator',
+    title: 'Kelsey Nocek | UGC Creator & Storyteller',
     description:
-      'Authentic UGC video and photo content for outdoor, travel, adventure, lifestyle, and tech brands.',
+      'Concept-driven short-form video and photography for outdoor, travel, adventure, gear, pet, and lifestyle brands.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

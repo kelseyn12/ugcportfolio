@@ -1,34 +1,25 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import VideoShowcase from '@/components/VideoShowcase';
+import SelectedWork from '@/components/SelectedWork';
+import MeetKelsey from '@/components/MeetKelsey';
+import PerformanceProof from '@/components/PerformanceProof';
+import BrandsWorkedWith from '@/components/BrandsWorkedWith';
 import Testimonials from '@/components/Testimonials';
-import UGCPhotos from '@/components/UGCPhotos';
-import About from '@/components/About';
+import Photography from '@/components/Photography';
 import Contact from '@/components/Contact';
 
 export default function HomePage() {
   return (
     <>
       <Nav />
-      <main
-        className="flex flex-col"
-        style={{
-          background: "linear-gradient(180deg, #e8dcc8 0%, #ede4d3 40%, #e8dcc8 100%)",
-        }}
-      >
+      <main className="site-shell flex flex-col gap-20 pb-8 md:gap-28 md:pb-12">
         <Hero />
-
-        <div className="flex flex-col gap-[100px] md:gap-[130px] py-[100px] md:py-[130px]">
-          <VideoShowcase />
-        </div>
-
+        <SelectedWork />
+        <MeetKelsey />
+        <PerformanceProof />
+        <BrandsWorkedWith />
         <Testimonials />
-
-        <div className="flex flex-col gap-[100px] md:gap-[130px] py-[100px] md:py-[130px]">
-          <UGCPhotos />
-          <About />
-        </div>
-
+        <Photography />
         <Contact />
       </main>
     </>

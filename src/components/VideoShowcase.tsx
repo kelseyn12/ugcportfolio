@@ -48,6 +48,13 @@ const featured = [
 
 const more = [
   {
+    file: "Goldbug Hot Springs-web.mp4",
+    brand: "Goldbug Hot Springs",
+    title: "Organic Storytelling",
+    type: "Organic Storytelling",
+    niche: "Goldbug Hot Springs",
+  },
+  {
     file: "Splitwise-web.mp4",
     brand: "Splitwise",
     title: "Green Screen Ad",
