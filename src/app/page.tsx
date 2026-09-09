@@ -14,10 +14,10 @@ export default function HomePage() {
       <Nav />
       <main id="main" className="site-shell flex flex-col gap-20 md:gap-28">
         <Hero />
+        <BrandsWorkedWith />
         <SelectedWork />
         <MeetKelsey />
         <PerformanceProof />
-        <BrandsWorkedWith />
         <Testimonials />
         <Photography />
         <Contact />

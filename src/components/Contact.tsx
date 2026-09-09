@@ -38,7 +38,7 @@ export default function Contact() {
           Let&apos;s make something good.
         </h2>
         <p className="scroll-reveal scroll-reveal-stagger-2 mt-5 max-w-xl text-base text-[rgba(247,245,240,0.78)]">
-          Got a project, product, place, or half-baked idea? Tell me about it.
+          Got a project, product, place, or half-baked idea? Email me for my rates so I can bring it to life.
         </p>
 
         <div className="scroll-reveal scroll-reveal-stagger-3 mt-8 flex flex-wrap gap-2">

@@ -300,7 +300,7 @@ export default function Hero() {
                 View Work
               </button>
               <a href={`mailto:${EMAIL}`} className="btn-secondary">
-                Start a Project
+                Work with me
               </a>
             </div>
 
