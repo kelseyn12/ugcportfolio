@@ -194,6 +194,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           src="/intro-web.mp4"
+          poster="/thumbs/intro-web-thumb.jpg"
           loop
           playsInline
           preload="metadata"
