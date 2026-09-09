@@ -23,6 +23,12 @@ function subscribe() {
   return () => {};
 }
 
+function subscribeReducedMotion(onChange: () => void) {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
 function getFocusable(root: HTMLElement) {
   return [
     ...root.querySelectorAll<HTMLElement>(
@@ -33,6 +39,11 @@ function getFocusable(root: HTMLElement) {
 
 export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
   const isClient = useSyncExternalStore(subscribe, () => true, () => false);
+  const prefersReducedMotion = useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
   const [index, setIndex] = useState(0);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -99,44 +110,32 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
     }
   }, [index]);
 
+  const bindVideo = (element: HTMLVideoElement | null) => {
+    videoRef.current = element;
+    if (!element) return;
+    element.muted = true;
+    element.defaultMuted = true;
+    element.playsInline = true;
+    element.setAttribute("playsinline", "true");
+    element.setAttribute("webkit-playsinline", "true");
+  };
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let cancelled = false;
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    const start = () => {
-      if (cancelled || reducedMotion) return;
-      video.currentTime = 0;
-      void video.play();
-    };
-
-    video.pause();
-    video.currentTime = 0;
-
-    if (reducedMotion) {
-      return () => {
-        cancelled = true;
-        video.pause();
-      };
+    if (prefersReducedMotion) {
+      video.pause();
+      return;
     }
 
-    if (video.readyState >= 2) {
-      start();
-    } else {
-      video.addEventListener("loadeddata", start, { once: true });
-    }
+    video.muted = true;
+    void video.play().catch(() => {});
 
     return () => {
-      cancelled = true;
       video.pause();
-      video.currentTime = 0;
-      video.removeEventListener("loadeddata", start);
     };
-  }, [index]);
+  }, [index, prefersReducedMotion]);
 
   const onTouchStart = (event: React.TouchEvent) => {
     touchStartX.current = event.changedTouches[0]?.clientX ?? null;
@@ -200,14 +199,25 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
           ) : (
             <video
               key={slide.src}
-              ref={videoRef}
+              ref={bindVideo}
               src={slide.src}
               className="diego-story-media"
+              autoPlay={!prefersReducedMotion}
               muted
               playsInline
               loop={slide.loop}
-              preload="metadata"
+              preload="auto"
               aria-label={slide.label}
+              onCanPlay={() => {
+                const video = videoRef.current;
+                if (!video || prefersReducedMotion || !video.paused) return;
+                void video.play().catch(() => {});
+              }}
+              onClick={() => {
+                const video = videoRef.current;
+                if (!video || prefersReducedMotion || !video.paused) return;
+                void video.play().catch(() => {});
+              }}
             />
           )}
 
