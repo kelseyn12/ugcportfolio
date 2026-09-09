@@ -7,6 +7,7 @@ export type DiegoStorySlide =
   | {
       type: "video";
       src: string;
+      poster: string;
       label: string;
       loop: boolean;
     };
@@ -25,6 +26,7 @@ export const diegoStorySlides: DiegoStorySlide[] = [
   {
     type: "video",
     src: "/video/diego-story/03-shenanigans.mp4",
+    poster: "/images/diego-story/03-shenanigans-poster.jpg",
     label:
       "Video of puppy Diego and littermates around a food bowl. Text: Shenanigans started immediately.",
     loop: true,
@@ -37,6 +39,7 @@ export const diegoStorySlides: DiegoStorySlide[] = [
   {
     type: "video",
     src: "/video/diego-story/05-digger.mp4",
+    poster: "/images/diego-story/05-digger-poster.jpg",
     label:
       "Video of puppy Diego digging in the sand. Text: A digger from the beginning. Still convinced he's going somewhere.",
     loop: false,
@@ -72,3 +75,34 @@ export const diegoStorySlides: DiegoStorySlide[] = [
     alt: "Diego sitting with Kelsey in a hot tub at night. Text: Also apparently a hot tub guy.",
   },
 ];
+
+export const diegoStoryVideos = diegoStorySlides.filter(
+  (slide): slide is Extract<DiegoStorySlide, { type: "video" }> => slide.type === "video",
+);
+
+let diegoStoryPrefetchStarted = false;
+
+export function prefetchDiegoStoryMedia() {
+  if (diegoStoryPrefetchStarted || typeof document === "undefined") return;
+  diegoStoryPrefetchStarted = true;
+
+  diegoStoryVideos.forEach((slide) => {
+    const poster = new Image();
+    poster.src = slide.poster;
+
+    const video = document.createElement("video");
+    video.muted = true;
+    video.defaultMuted = true;
+    video.preload = "auto";
+    video.playsInline = true;
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("aria-hidden", "true");
+    video.tabIndex = -1;
+    video.style.cssText =
+      "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);pointer-events:none;opacity:0";
+    video.src = slide.src;
+    document.body.appendChild(video);
+    video.load();
+  });
+}

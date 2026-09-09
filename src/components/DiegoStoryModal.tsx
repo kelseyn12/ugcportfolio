@@ -10,7 +10,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { createPortal } from "react-dom";
-import { diegoStorySlides } from "@/data/diegoStory";
+import { diegoStorySlides, prefetchDiegoStoryMedia } from "@/data/diegoStory";
 
 const LAST_INDEX = diegoStorySlides.length - 1;
 const SWIPE_THRESHOLD = 48;
@@ -45,12 +45,14 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
     () => false,
   );
   const [index, setIndex] = useState(0);
+  const [playingSrc, setPlayingSrc] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const touchStartX = useRef<number | null>(null);
   const titleId = useId();
   const slide = diegoStorySlides[index];
+  const videoReady = slide?.type === "video" && playingSrc === slide.src;
 
   const goTo = useCallback((next: number) => {
     setIndex(Math.max(0, Math.min(LAST_INDEX, next)));
@@ -67,6 +69,10 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
       document.body.style.overflow = previousBodyOverflow;
       html.style.overflow = previousHtmlOverflow;
     };
+  }, []);
+
+  useEffect(() => {
+    prefetchDiegoStoryMedia();
   }, []);
 
   useEffect(() => {
@@ -129,10 +135,18 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
       return;
     }
 
-    video.muted = true;
-    void video.play().catch(() => {});
+    const tryPlay = () => {
+      if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) return;
+      video.muted = true;
+      void video.play().catch(() => {});
+    };
 
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
     return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
       video.pause();
     };
   }, [index, prefersReducedMotion]);
@@ -197,28 +211,31 @@ export default function DiegoStoryModal({ onClose }: DiegoStoryModalProps) {
               className="diego-story-media"
             />
           ) : (
-            <video
-              key={slide.src}
-              ref={bindVideo}
-              src={slide.src}
-              className="diego-story-media"
-              autoPlay={!prefersReducedMotion}
-              muted
-              playsInline
-              loop={slide.loop}
-              preload="auto"
-              aria-label={slide.label}
-              onCanPlay={() => {
-                const video = videoRef.current;
-                if (!video || prefersReducedMotion || !video.paused) return;
-                void video.play().catch(() => {});
-              }}
-              onClick={() => {
-                const video = videoRef.current;
-                if (!video || prefersReducedMotion || !video.paused) return;
-                void video.play().catch(() => {});
-              }}
-            />
+            <div className={`diego-story-frame${videoReady ? " is-ready" : ""}`}>
+              <img
+                src={slide.poster}
+                alt=""
+                className="diego-story-media diego-story-frame-poster"
+              />
+              <video
+                key={slide.src}
+                ref={bindVideo}
+                src={slide.src}
+                poster={slide.poster}
+                className="diego-story-frame-video"
+                muted
+                playsInline
+                loop={slide.loop}
+                preload="auto"
+                aria-label={slide.label}
+                onPlaying={() => setPlayingSrc(slide.src)}
+                onClick={() => {
+                  const video = videoRef.current;
+                  if (!video || prefersReducedMotion || !video.paused) return;
+                  void video.play().catch(() => {});
+                }}
+              />
+            </div>
           )}
 
           <button

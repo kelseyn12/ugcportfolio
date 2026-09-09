@@ -5,6 +5,7 @@ import { useCallback, useRef, useState } from "react";
 import { aboutPhotos } from "@/data/portfolio";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import DiegoStoryModal from "@/components/DiegoStoryModal";
+import { prefetchDiegoStoryMedia } from "@/data/diegoStory";
 
 const [mtbPhoto, bikepackingPhoto, vanPhoto, diegoPhoto] = aboutPhotos;
 const DIEGO_TRIGGER_LABEL = "Meet Diego, unofficial creative director";
@@ -60,6 +61,8 @@ export default function MeetKelsey() {
                   type="button"
                   className="about-diego-hit"
                   onClick={openStory}
+                  onPointerEnter={prefetchDiegoStoryMedia}
+                  onFocus={prefetchDiegoStoryMedia}
                   aria-haspopup="dialog"
                   aria-expanded={storyOpen}
                   aria-label={DIEGO_TRIGGER_LABEL}
@@ -70,6 +73,8 @@ export default function MeetKelsey() {
                 type="button"
                 className="about-diego-invite"
                 onClick={openStory}
+                onPointerEnter={prefetchDiegoStoryMedia}
+                onFocus={prefetchDiegoStoryMedia}
                 aria-haspopup="dialog"
                 aria-expanded={storyOpen}
                 aria-label={DIEGO_TRIGGER_LABEL}
