@@ -35,17 +35,23 @@ export default function SelectedWork() {
       <SectionHeading
         eyebrow="Portfolio"
         title="Selected Work"
-        description="Six projects chosen to show range — product, travel, outdoor, concept, traditional UGC, and brand storytelling."
+        description="Different brands. Different formats. Same goal: make something worth watching."
+        tight
       />
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <div className="work-grid">
         {featuredVideos.map((video, index) => (
           <VideoCard key={video.file} video={video} index={index} />
         ))}
       </div>
 
-      <div className="mt-6 text-center">
-        <button type="button" className="btn-secondary text-[0.625rem]" onClick={handleToggle}>
+      <div className="mt-12 text-center md:mt-16">
+        <button
+          type="button"
+          className="btn-secondary text-[0.625rem]"
+          onClick={handleToggle}
+          aria-expanded={expanded}
+        >
           {expanded ? "Show less ↑" : "View more work ↓"}
         </button>
       </div>
@@ -57,14 +63,16 @@ export default function SelectedWork() {
           opacity: expanded ? 1 : 0,
         }}
         aria-hidden={!expanded}
+        {...(!expanded ? { inert: true } : {})}
       >
-        <div className="mt-5 mb-4 flex gap-2 overflow-x-auto pb-1">
+        <div className="work-filter-row mt-8 mb-6 flex gap-2 overflow-x-auto pb-1">
           {moreWorkCategories.map((category) => (
             <button
               key={category}
               type="button"
               className="filter-pill"
               data-active={activeCategory === category}
+              aria-pressed={activeCategory === category}
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -72,7 +80,7 @@ export default function SelectedWork() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <div className="work-grid">
           {filtered.map((video: VideoEntry, index) => (
             <VideoCard key={video.file} video={video} index={index} variant="compact" />
           ))}

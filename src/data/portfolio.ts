@@ -9,20 +9,6 @@ export type VideoEntry = {
 
 export const featuredVideos: VideoEntry[] = [
   {
-    file: "Under Armor Gear-web.mp4",
-    brand: "Urban Armor Gear",
-    title: "Gear",
-    label: "UGC · Product",
-    categories: ["Product UGC", "Lifestyle"],
-  },
-  {
-    file: "Maxwell Mansion-web.mp4",
-    brand: "Maxwell Mansion",
-    title: "Stay Story",
-    label: "Hospitality · Organic",
-    categories: ["Travel + Experience", "Organic Social", "Storytelling"],
-  },
-  {
     file: "BWCA-web.mp4",
     brand: "Ely Outfitting Co.",
     title: "Canoe Trip",
@@ -30,12 +16,26 @@ export const featuredVideos: VideoEntry[] = [
     categories: ["Outdoor + Gear", "Travel + Experience"],
   },
   {
+    file: "Under Armor Gear-web.mp4",
+    brand: "Urban Armor Gear",
+    title: "Gear",
+    label: "UGC · Product",
+    categories: ["Product UGC", "Lifestyle"],
+  },
+  {
     file: "Challenger Backpack-web.mp4",
-    brand: "La Sportiva",
-    title: "Challenger 28 Backpack",
+    brand: "Challenger 28",
+    title: "La Sportiva Backpack",
     label: "Spec · Concept",
     categories: ["Outdoor + Gear"],
     independent: true,
+  },
+  {
+    file: "Maxwell Mansion-web.mp4",
+    brand: "Maxwell Mansion",
+    title: "Stay Story",
+    label: "Hospitality · Organic",
+    categories: ["Travel + Experience", "Organic Social", "Storytelling"],
   },
   {
     file: "Lost Ranger-web.mp4",
@@ -77,6 +77,20 @@ export const moreVideos: VideoEntry[] = [
     categories: ["Pet", "Product UGC"],
   },
   {
+    file: "Uber Eats-web.mp4",
+    brand: "Uber Eats",
+    title: "Delivery Day",
+    label: "UGC · Lifestyle",
+    categories: ["Lifestyle", "Product UGC"],
+  },
+  {
+    file: "COROS Apex 4-web.mp4",
+    brand: "COROS",
+    title: "Apex 4 Watch",
+    label: "Product UGC · Tech",
+    categories: ["Tech", "Outdoor + Gear", "Product UGC"],
+  },
+  {
     file: "Big Agnes Larkspur Vest-web.mp4",
     brand: "Big Agnes",
     title: "Larkspur Vest",
@@ -98,32 +112,11 @@ export const moreVideos: VideoEntry[] = [
     categories: ["Tech", "Product UGC"],
   },
   {
-    file: "Wilderdog-web.mp4",
-    brand: "Wilderdog",
-    title: "Testimonial",
-    label: "Testimonial · Pet",
-    categories: ["Pet", "Product UGC"],
-  },
-  {
     file: "CubCadet-web.mp4",
     brand: "Cub Cadet",
     title: "Product Demo",
     label: "Product UGC · Outdoor",
     categories: ["Outdoor + Gear", "Product UGC"],
-  },
-  {
-    file: "Keen-web.mp4",
-    brand: "Keen",
-    title: "Testimonial",
-    label: "Testimonial · Outdoor",
-    categories: ["Outdoor + Gear", "Product UGC"],
-  },
-  {
-    file: "Ifilmplaces-web.mp4",
-    brand: "I Film Places",
-    title: "Story",
-    label: "Story · Travel",
-    categories: ["Travel + Experience", "Storytelling"],
   },
 ];
 
@@ -140,43 +133,44 @@ export const moreWorkCategories = [
 ] as const;
 
 export type PerformanceResult = {
-  views: string;
+  metric: string;
+  metricLabel: string;
   title: string;
   subtitle: string;
   stats?: string[];
-  independent?: boolean;
 };
 
 export const performanceResults: PerformanceResult[] = [
   {
-    views: "112K",
+    metric: "113K+",
+    metricLabel: "Views",
     title: "Maxwell Mansion Hotel",
-    subtitle: "Hospitality · organic travel storytelling",
-    stats: ["1,548 likes", "856 saves", "433 shares", "53 comments"],
+    subtitle: "TikTok Go · Hospitality",
+    stats: ["1.5K+ likes", "860+ saves", "430+ shares"],
   },
   {
-    views: "53K",
+    metric: "53K+",
+    metricLabel: "Views",
     title: "Ely Outfitting Co.",
-    subtitle: "Outdoor · Boundary Waters experience",
-    stats: ["63 likes", "4 shares", "3 saves", "2 reposts"],
+    subtitle: "Commissioned brand content · Outdoor",
   },
   {
-    views: "30K",
+    metric: "1.2K+",
+    metricLabel: "Saves + Shares",
     title: "Goldbug Hot Springs",
-    subtitle: "Independent organic travel storytelling",
-    stats: ["810 likes", "673 shares", "590 saves", "22 comments"],
-    independent: true,
+    subtitle: "Independent concept · Travel",
+    stats: ["30K+ views", "830+ likes"],
   },
 ];
 
 export const brandsWorkedWith = [
-  { name: "Raycon Global", logo: null, key: "raycon" },
+  { name: "Raycon Global", logo: "/logos/raycon.png", key: "raycon" },
   { name: "ROMP Bags", logo: "/logos/romp-bags.png", key: "romp-bags" },
-  { name: "Urban Armor Gear", logo: null, key: "urban-armor-gear" },
-  { name: "Ely Outfitting Company", logo: "/logos/ely-outfitting.png", key: "ely-outfitting" },
-  { name: "Stay Wyld Organics", logo: "/logos/stay-wyld.png", key: "stay-wyld" },
-  { name: "Woolx", logo: null, key: "woolx" },
-  { name: "K9 Sport Sack", logo: null, key: "k9-sport-sack" },
+  { name: "Urban Armor Gear", logo: "/logos/urban-armor-gear.png", key: "urban-armor-gear" },
+  { name: "Ely Outfitting Co.", logo: "/logos/ely-outfitting.png", key: "ely-outfitting" },
+  { name: "Stay Wyld", logo: "/logos/stay-wyld.png", key: "stay-wyld" },
+  { name: "Woolx", logo: "/logos/woolx.png", key: "woolx" },
+  { name: "K9 Sport Sack", logo: "/logos/k9-sport-sack.png", key: "k9-sport-sack" },
 ];
 
 export const testimonials = [
@@ -214,13 +208,13 @@ export const featuredPhotos: PhotoEntry[] = [
     src: "/images/RompBike.jpg",
     brand: "Romp Bags",
     alt: "Romp bike lifestyle",
-    objectPosition: "42% 45%",
+    objectPosition: "42% 50%",
   },
   {
     src: "/images/altra1.jpg",
     brand: "Altra",
     alt: "Altra running shoes lifestyle",
-    objectPosition: "50% 78%",
+    objectPosition: "50% 64%",
   },
   {
     src: "/images/chair.jpg",
@@ -233,19 +227,19 @@ export const featuredPhotos: PhotoEntry[] = [
     brand: "Pawzitive Pets",
     alt: "Diego with Pawzitive Pets flea and tick prevention",
     caption: "Diego — unofficial creative director →",
-    objectPosition: "50% 36%",
+    objectPosition: "50% 12%",
   },
   {
     src: "/images/RadFabJeans2.JPG",
     brand: "Rad Fab Jeans",
     alt: "Rad Fab Jeans lifestyle",
-    objectPosition: "68% 24%",
+    objectPosition: "60% 24%",
   },
   {
     src: "/images/Rompbag1.jpg",
     brand: "Romp Bags",
     alt: "Romp bag lifestyle",
-    objectPosition: "50% 44%",
+    objectPosition: "50% 46%",
   },
 ];
 
@@ -274,30 +268,25 @@ export const additionalPhotos: PhotoEntry[] = [
 
 export const aboutPhotos = [
   {
-    src: "/images/kelsey-surfing.png",
-    alt: "Kelsey surfing on a calm lake",
-    objectPosition: "50% 42%",
-  },
-  {
-    src: "/images/outside-climb.JPG",
-    alt: "Kelsey climbing",
-    objectPosition: "48% 20%",
+    src: "/images/outside-mtb-diego.jpg",
+    alt: "Kelsey and Diego resting in a field of daisies during a mountain bike ride",
+    objectPosition: "50% 50%",
   },
   {
     src: "/images/outside-bike.jpeg",
     alt: "Kelsey biking",
-    objectPosition: "50% 28%",
+    objectPosition: "50% 45%",
   },
   {
     src: "/images/outside-music.jpg",
     alt: "Kelsey playing music",
-    objectPosition: "50% 30%",
+    objectPosition: "50% 50%",
   },
   {
     src: "/images/Diego.png",
     alt: "Diego the dog",
     caption: "Diego — unofficial creative director →",
-    objectPosition: "50% 32%",
+    objectPosition: "50% 45%",
   },
 ];
 
@@ -307,7 +296,7 @@ export const contactServices = [
   "Paid Ads",
   "Photography",
   "Travel + Experience",
-  "Raw Footage",
+  "Creative Concepting",
 ];
 
 export const socialLinks = [

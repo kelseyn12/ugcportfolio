@@ -38,8 +38,7 @@ export default function Contact() {
           Let&apos;s make something good.
         </h2>
         <p className="scroll-reveal scroll-reveal-stagger-2 mt-5 max-w-xl text-base text-[rgba(247,245,240,0.78)]">
-          Have a project in mind? Tell me what you&apos;re working on and I&apos;ll
-          send over availability and rates based on scope.
+          Got a project, product, place, or half-baked idea? Tell me about it.
         </p>
 
         <div className="scroll-reveal scroll-reveal-stagger-3 mt-8 flex flex-wrap gap-2">
@@ -50,15 +49,12 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="scroll-reveal scroll-reveal-stagger-4 mt-10 flex flex-wrap gap-3">
+        <div className="relative z-10 mt-10">
           <a
             href={`mailto:${EMAIL}?subject=Project%20Inquiry`}
             className="btn-primary btn-on-dark"
           >
-            Tell Me About Your Project
-          </a>
-          <a href={`mailto:${EMAIL}`} className="btn-secondary btn-on-dark-outline">
-            {EMAIL}
+            Let&apos;s Work Together →
           </a>
         </div>
 
@@ -79,7 +75,7 @@ export default function Contact() {
       </div>
 
       <footer className="contact-footer py-5 text-center text-[0.6875rem] uppercase tracking-[0.14em]">
-        © 2026 Kelsey Nocek · UGC Creator & Storyteller
+        © 2026 Kelsey Nocek
       </footer>
     </section>
   );

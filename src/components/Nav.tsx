@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+const MOBILE_MENU_ID = 'mobile-nav-menu';
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +14,15 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [open]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -26,59 +37,61 @@ export default function Nav() {
   ];
 
   return (
-    <>
-      <nav className="site-nav" data-scrolled={scrolled}>
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="font-serif text-[0.9375rem] font-semibold tracking-[0.04em] text-[var(--charcoal)]"
-          >
-            Kelsey Nocek
-          </button>
+    <nav className="site-nav" data-scrolled={scrolled}>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="font-serif text-[0.9375rem] font-semibold tracking-[0.04em] text-[var(--charcoal)]"
+        >
+          Kelsey Nocek
+        </button>
 
-          <div className="hidden items-center gap-8 md:flex">
-            {links.map(({ label, id }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => scrollTo(id)}
-                className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[var(--ink-muted)] transition-colors hover:text-[var(--forest)]"
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            className="flex flex-col gap-1.5 p-1 md:hidden"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label="Menu"
-          >
-            <span
-              className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
-              style={{
-                transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none',
-              }}
-            />
-            <span
-              className="block h-px w-5 bg-[var(--charcoal)] transition-opacity"
-              style={{ opacity: open ? 0 : 1 }}
-            />
-            <span
-              className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
-              style={{
-                transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
-              }}
-            />
-          </button>
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map(({ label, id }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => scrollTo(id)}
+              className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[var(--ink-muted)] transition-colors hover:text-[var(--forest)]"
+            >
+              {label}
+            </button>
+          ))}
         </div>
-      </nav>
+
+        <button
+          type="button"
+          className="flex flex-col gap-1.5 p-1 md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls={MOBILE_MENU_ID}
+          aria-label="Menu"
+        >
+          <span
+            className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
+            style={{
+              transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none',
+            }}
+          />
+          <span
+            className="block h-px w-5 bg-[var(--charcoal)] transition-opacity"
+            style={{ opacity: open ? 0 : 1 }}
+          />
+          <span
+            className="block h-px w-5 bg-[var(--charcoal)] transition-transform"
+            style={{
+              transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
+            }}
+          />
+        </button>
+      </div>
 
       {open && (
-        <div className="fixed inset-x-0 top-16 z-40 border-b border-[var(--line)] bg-[rgba(247,245,240,0.98)] backdrop-blur-md md:hidden">
+        <div
+          id={MOBILE_MENU_ID}
+          className="fixed inset-x-0 top-16 z-40 border-b border-[var(--line)] bg-[rgba(247,245,240,0.98)] backdrop-blur-md md:hidden"
+        >
           {links.map(({ label, id }) => (
             <button
               key={id}
@@ -91,6 +104,6 @@ export default function Nav() {
           ))}
         </div>
       )}
-    </>
+    </nav>
   );
 }

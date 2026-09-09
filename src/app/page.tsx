@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Nav />
-      <main className="site-shell flex flex-col gap-20 pb-8 md:gap-28 md:pb-12">
+      <main id="main" className="site-shell flex flex-col gap-20 md:gap-28">
         <Hero />
         <SelectedWork />
         <MeetKelsey />

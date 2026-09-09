@@ -1,33 +1,25 @@
-"use client";
-
 import { testimonials } from "@/data/portfolio";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
-import SectionHeading from "@/components/SectionHeading";
 
 export default function Testimonials() {
-  const ref = useScrollReveal();
-
   return (
-    <section ref={ref} id="testimonials" className="section-wrap border-y border-[var(--line)] py-16 md:py-20">
-      <SectionHeading eyebrow="Brand proof" title="What brands say" />
+    <section id="testimonials" className="section-wrap testimonials-section border-y border-[var(--line)]">
+      <div className="testimonials-heading">
+        <p className="eyebrow mb-3">From the brands</p>
+        <h2 className="section-title">What brands say</h2>
+      </div>
 
-      <div className="max-w-4xl">
-        {testimonials.map((item, index) => (
-          <figure
-            key={item.brand}
-            className={`scroll-reveal scroll-reveal-stagger-${Math.min(index + 1, 5) as 1 | 2 | 3 | 4 | 5} testimonial-item`}
-          >
+      <div className="testimonials-grid">
+        {testimonials.map((item) => (
+          <figure key={item.brand} className="testimonial-item">
             <blockquote className="testimonial-quote">
               &ldquo;{item.quote}&rdquo;
             </blockquote>
-            <figcaption className="mt-5">
-              <p className="text-sm font-semibold text-[var(--charcoal)]">
+            <figcaption className="testimonial-attribution">
+              <p className="testimonial-author">
                 {item.author}
                 {item.role ? ` · ${item.role}` : ""}
               </p>
-              <p className="mt-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-[var(--sage)]">
-                {item.brand}
-              </p>
+              <p className="testimonial-brand">{item.brand}</p>
             </figcaption>
           </figure>
         ))}
