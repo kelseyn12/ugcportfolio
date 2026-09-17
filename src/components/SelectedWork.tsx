@@ -57,33 +57,32 @@ export default function SelectedWork() {
       </div>
 
       <div
-        className="overflow-hidden transition-all duration-500"
-        style={{
-          maxHeight: expanded ? 8000 : 0,
-          opacity: expanded ? 1 : 0,
-        }}
+        className="work-more"
+        data-open={expanded ? "true" : "false"}
         aria-hidden={!expanded}
         {...(!expanded ? { inert: true } : {})}
       >
-        <div className="work-filter-row mt-8 mb-6 flex gap-2 overflow-x-auto pb-1">
-          {moreWorkCategories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              className="filter-pill"
-              data-active={activeCategory === category}
-              aria-pressed={activeCategory === category}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        <div className="work-more-inner">
+          <div className="work-filter-row mt-8 mb-6 flex gap-2 overflow-x-auto pb-1">
+            {moreWorkCategories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                className="filter-pill"
+                data-active={activeCategory === category}
+                aria-pressed={activeCategory === category}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
-        <div className="work-grid">
-          {filtered.map((video: VideoEntry, index) => (
-            <VideoCard key={video.file} video={video} index={index} variant="compact" />
-          ))}
+          <div className="work-grid">
+            {filtered.map((video: VideoEntry, index) => (
+              <VideoCard key={video.file} video={video} index={index} variant="compact" />
+            ))}
+          </div>
         </div>
       </div>
     </section>

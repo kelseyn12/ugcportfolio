@@ -35,10 +35,14 @@ export default function VideoCard({
   };
 
   const stagger = Math.min(index + 1, 5) as 1 | 2 | 3 | 4 | 5;
+  const revealClass =
+    variant === "compact"
+      ? ""
+      : `scroll-reveal scroll-reveal-stagger-${stagger} `;
 
   return (
     <article
-      className={`scroll-reveal scroll-reveal-stagger-${stagger} video-card group`}
+      className={`${revealClass}video-card group`}
       data-variant={variant}
     >
       <div className="video-card-screen">

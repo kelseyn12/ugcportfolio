@@ -694,6 +694,23 @@ body {
     margin-inline: auto;
   }
 
+  .work-more {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.5s ease, opacity 0.5s ease;
+  }
+
+  .work-more[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .work-more-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
   .video-card {
     display: flex;
     flex-direction: column;

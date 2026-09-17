@@ -77,6 +77,13 @@ export const moreVideos: VideoEntry[] = [
     categories: ["Tech", "Product UGC"],
   },
   {
+    file: "Polsia-web.mp4",
+    brand: "Polsia",
+    title: "Canvas Ad",
+    label: "Canvas · Tech",
+    categories: ["Tech", "Product UGC"],
+  },
+  {
     file: "chomchom-web.mp4",
     brand: "Chom Chom",
     title: "Product Demo",
@@ -149,7 +156,7 @@ export type PerformanceResult = {
 
 export const performanceResults: PerformanceResult[] = [
   {
-    metric: "113K+",
+    metric: "116K+",
     metricLabel: "Views",
     title: "Maxwell Mansion Hotel",
     subtitle: "TikTok Go · Hospitality",
