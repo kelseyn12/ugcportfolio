@@ -45,15 +45,22 @@ export const featuredVideos: VideoEntry[] = [
     categories: ["Outdoor + Gear", "Product UGC"],
   },
   {
+    file: "SiteScout-web.mp4",
+    brand: "SiteScout",
+    title: "Canvas Ad",
+    label: "Canvas · Tech",
+    categories: ["Tech", "Product UGC"],
+  },
+];
+
+export const moreVideos: VideoEntry[] = [
+  {
     file: "Romp-v2-web.mp4",
     brand: "Romp Bags",
     title: "Origin Story",
     label: "Brand Storytelling",
     categories: ["Storytelling", "Outdoor + Gear"],
   },
-];
-
-export const moreVideos: VideoEntry[] = [
   {
     file: "Goldbug Hot Springs-web.mp4",
     brand: "Goldbug Hot Springs",
